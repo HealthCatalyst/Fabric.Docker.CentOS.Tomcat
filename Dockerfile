@@ -8,11 +8,14 @@ RUN useradd docker \
 	&& mkdir -p /home/docker \
 	&& chown docker:docker /home/docker
  
-# RUN yum -y update; yum clean all
-
-RUN yum -y install java-1.7.0-openjdk-devel dos2unix; yum clean all
+RUN yum -y update; yum clean all \
+    && yum -y install java-1.7.0-openjdk-devel dos2unix which; yum clean all
 
 # install tomcat
 RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
 	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt
+
+ADD https://healthcatalyst.github.io/InstallScripts/wait-for-it.sh ./wait-for-it.sh
+
+RUN chmod a+x /wait-for-it.sh
 
