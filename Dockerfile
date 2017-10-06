@@ -13,6 +13,6 @@ RUN useradd docker \
 RUN yum -y install java-1.7.0-openjdk-devel dos2unix; yum clean all
 
 # install tomcat
-RUN curl -O http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
+RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
 	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt
 
