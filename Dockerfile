@@ -13,7 +13,8 @@ RUN yum -y update; yum clean all \
 
 # install tomcat
 RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
-	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt
+	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt \
+    && mv /opt/apache-tomcat-7.0.81 /opt/apache-tomcat
 
 ADD https://healthcatalyst.github.io/InstallScripts/wait-for-it.sh ./wait-for-it.sh
 
