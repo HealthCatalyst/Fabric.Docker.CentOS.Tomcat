@@ -1,5 +1,5 @@
 FROM centos:centos7
-MAINTAINER Health Catalyst <imran.qureshi@healthcatalyst.com>
+LABEL maintainer="imran.qureshi@healthcatalyst.com"
 
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
@@ -18,5 +18,12 @@ RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-t
 
 ADD https://healthcatalyst.github.io/InstallScripts/wait-for-it.sh ./wait-for-it.sh
 
-RUN chmod a+x /wait-for-it.sh
+ADD env_secrets_expand.sh ./env_secrets_expand.sh
+
+RUN dos2unix ./wait-for-it.sh \
+	&& chmod a+x ./wait-for-it.sh \
+	&& dos2unix ./env_secrets_expand.sh \
+	&& chmod a+x ./env_secrets_expand.sh   
+
+
 
