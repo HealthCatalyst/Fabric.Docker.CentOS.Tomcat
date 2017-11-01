@@ -1,29 +1,9 @@
-FROM centos:centos7
-LABEL maintainer="imran.qureshi@healthcatalyst.com"
+FROM healthcatalyst/fabric.baseos:latest
 
-## Set a default user. Available via runtime flag `--user docker` 
-## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
-## User should also have & own a home directory (for rstudio or linked volumes to work properly). 
-RUN useradd docker \
-	&& mkdir -p /home/docker \
-	&& chown docker:docker /home/docker
- 
-RUN yum -y update; yum clean all \
-    && yum -y install java-1.7.0-openjdk-devel dos2unix which; yum clean all
+LABEL maintainer="Health Catalyst"
+LABEL version="1.0"
 
 # install tomcat
 RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
 	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt \
     && mv /opt/apache-tomcat-7.0.81 /opt/apache-tomcat
-
-ADD https://healthcatalyst.github.io/InstallScripts/wait-for-it.sh ./wait-for-it.sh
-
-ADD env_secrets_expand.sh ./env_secrets_expand.sh
-
-RUN dos2unix ./wait-for-it.sh \
-	&& chmod a+x ./wait-for-it.sh \
-	&& dos2unix ./env_secrets_expand.sh \
-	&& chmod a+x ./env_secrets_expand.sh   
-
-
-
