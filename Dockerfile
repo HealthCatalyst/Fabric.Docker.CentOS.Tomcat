@@ -5,7 +5,7 @@ LABEL version="1.0"
 
 RUN yum -y install wget
 
-RUN wget -O jdk.rpm https://fabricnlpfiles.blob.core.windows.net/java/jdk-8u152-linux-x64.rpm \
+RUN wget -O jdk.rpm https://fabricnlpfiles.blob.core.windows.net/java/jdk-7u80-linux-x64.rpm \
 && yum install -y ./jdk.rpm \
 && yum clean all \
 && rm -f jdk.rpm
