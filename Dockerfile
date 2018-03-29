@@ -11,9 +11,12 @@ RUN wget -O jdk.rpm https://fabricnlpfiles.blob.core.windows.net/java/jdk-8u152-
 && rm -f jdk.rpm
 
 # install tomcat
-RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz \
-	&& tar -xvf apache-tomcat-7.0.81.tar.gz -C /opt \
-    && mv /opt/apache-tomcat-7.0.81 /opt/apache-tomcat
+ARG tomcatmajorversion=8
+ARG tomcatversion=8.5.9
+# from https://archive.apache.org/dist/tomcat/tomcat-8/
+RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-${tomcatmajorversion}/v${tomcatversion}/bin/apache-tomcat-${tomcatversion}.tar.gz \
+	&& tar -xvf apache-tomcat-${tomcatversion}.tar.gz -C /opt \
+    && mv /opt/apache-tomcat-${tomcatversion} /opt/apache-tomcat
 
 
 
