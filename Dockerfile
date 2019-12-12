@@ -13,7 +13,7 @@ RUN wget -O jdk.rpm https://fabricnlpfiles.blob.core.windows.net/java/jdk-${JAVA
 
 # install tomcat
 ARG TOMCAT_VERSION_MAJOR=8
-ARG TOMCAT_VERSION=8.5.9
+ARG TOMCAT_VERSION=8.5.49
 # from https://archive.apache.org/dist/tomcat/tomcat-8/
 RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz \
 	&& tar -xvf apache-tomcat-${TOMCAT_VERSION}.tar.gz -C /opt \
